@@ -1,6 +1,6 @@
 import React from "react";
 
-interface ProfileCard {
+interface ProfileCardProps {
   name?: string;
   loc?: string;
   desc?: string;
@@ -23,7 +23,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, loc, desc }) => {
             </div>
           </div>
           <div className="mt-12">
-            <h3 className="text-blueGray-700 mb-2 mb-2 text-xl font-semibold leading-normal">
+            <h3 className="text-blueGray-700 mb-2 text-xl font-semibold leading-normal">
               {name}
             </h3>
             <div className="text-blueGray-400 mb-2 mt-0 text-sm font-bold uppercase leading-normal">
@@ -53,7 +53,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, loc, desc }) => {
 
 // Set default prop values using defaultProps
 ProfileCard.defaultProps = {
-  title: "Default Name",
+  name: "Default Name",
   loc: "Default Location",
   desc: "Default Description",
 };
