@@ -1,4 +1,5 @@
 import { type AppType } from "next/app";
+
 import type { ReactElement, ReactNode } from "react";
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
@@ -9,7 +10,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "~/styles/globals.css";
 import "~/styles/tailwind.css";
 
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+export type NextPageWithLayout<P = NonNullable<unknown>, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 

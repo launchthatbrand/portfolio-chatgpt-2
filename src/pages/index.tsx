@@ -1,8 +1,9 @@
-import type { ReactElement } from "react";
-import Layout from "../layouts/Main";
-import type { NextPageWithLayout } from "./_app";
+/* eslint-disable react/no-unescaped-entities */
 
+import Layout from "../layouts/Main";
 import Link from "next/link";
+import type { NextPageWithLayout } from "./_app";
+import type { ReactElement } from "react";
 
 const Page: NextPageWithLayout = () => {
   return (
