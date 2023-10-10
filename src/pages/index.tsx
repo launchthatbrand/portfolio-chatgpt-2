@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 
+import CardProfile from "~/components/Cards/CardProfile";
 import Layout from "../layouts/Main";
 import Link from "next/link";
 import type { NextPageWithLayout } from "./_app";
@@ -11,11 +12,11 @@ const Page: NextPageWithLayout = () => {
       {/* <IndexNavbar fixed /> */}
       <section className="header relative flex h-screen items-center pt-16">
         <div className="container mx-auto flex flex-wrap items-center">
-          <div className="w-full px-4 md:w-6/12 lg:w-6/12 xl:w-6/12">
+          <div className="w-full px-4">
             <div className="pt-32 sm:pt-0">
-              <h2 className="text-blueGray-600 text-4xl font-semibold">
+              {/* <h2 className="text-blueGray-600 text-4xl font-semibold">
                 Notus NextJS - A beautiful extension for Tailwind CSS.
-              </h2>
+              </h2> */}
               <p className="text-blueGray-500 mt-4 text-lg leading-relaxed">
                 Notus NextJS is Free and Open Source. It does not change any of
                 the CSS from{" "}
@@ -30,7 +31,7 @@ const Page: NextPageWithLayout = () => {
                 . It features multiple HTML elements and it comes with dynamic
                 components for ReactJS, Vue and Angular.
               </p>
-              <div className="mt-12">
+              {/* <div className="mt-12">
                 <a
                   href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus?ref=nnjs-index"
                   target="_blank"
@@ -45,7 +46,7 @@ const Page: NextPageWithLayout = () => {
                 >
                   Github Star
                 </a>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -53,6 +54,17 @@ const Page: NextPageWithLayout = () => {
           className="b-auto max-h-860-px absolute right-0 top-0 -mt-48 w-10/12 pt-16 sm:mt-0 sm:w-6/12"
           src="/img/pattern_nextjs.png"
           alt="..."
+        />
+      </section>
+
+      <section className="bg-blueGray-100 relative mt-48 pb-40 md:mt-40">
+        <CardProfile
+          title="Lead Engineer"
+          position="Lead Engineer"
+          start_date="2018"
+          end_date="2020"
+          desc="this the the job description"
+          tags={["Tag1", "Tag2", "Tag3"]}
         />
       </section>
 

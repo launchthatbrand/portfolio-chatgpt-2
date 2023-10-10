@@ -17,7 +17,7 @@ interface LayoutProps {
 export default function Admin({ children }: LayoutProps) {
   return (
     <><div className="flex w-screen h-screen flex-row">
-      <div className="bg-red-600 basis-3/6"></div>
+      <div className="basis-3/6"></div>
 
       <Sidebar />
       <div className="bg-blueGray-100 basis-3/6">

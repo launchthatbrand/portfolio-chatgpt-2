@@ -21,14 +21,23 @@ export default function Sidebar() {
             <i className="fas fa-bars"></i>
           </button>
           {/* Brand */}
-          <Link legacyBehavior href="/">
+          {/* <Link legacyBehavior href="/">
             <a
               href="#pablo"
               className="text-blueGray-600 mr-0 inline-block whitespace-nowrap p-4 px-0 text-left text-sm font-bold uppercase md:block md:pb-2"
             >
-              Notus NextJS
+              Desmond Tatilian
             </a>
-          </Link>
+          </Link> */}
+          <div className="text-blueGray-600 mr-0 inline-block whitespace-nowrap p-4 px-0 text-left text-sm font-bold uppercase md:block md:pb-2">
+            Desmond Tatilian
+            </div>
+            <div className="text-blueGray-600 mr-0 inline-block whitespace-nowrap p-4 px-0 text-left text-sm font-bold uppercase md:block md:pb-2">
+            Creating Digital Products at LaunchThatBrand
+            </div>
+            <div className="text-blueGray-600 mr-0 inline-block whitespace-nowrap p-4 px-0 text-left text-sm font-bold uppercase md:block md:pb-2">
+            I build accessible, inclusive products and digital experiences for the web.
+            </div>
           {/* User */}
           <ul className="flex list-none flex-wrap items-center md:hidden">
             <li className="relative inline-block">
@@ -79,11 +88,11 @@ export default function Sidebar() {
             </form>
 
             {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
+            {/* <hr className="my-4 md:min-w-full" /> */}
             {/* Heading */}
-            <h6 className="text-blueGray-500 block pb-4 pt-1 text-xs font-bold uppercase no-underline md:min-w-full">
+            {/* <h6 className="text-blueGray-500 block pb-4 pt-1 text-xs font-bold uppercase no-underline md:min-w-full">
               Admin Layout Pages
-            </h6>
+            </h6> */}
             {/* Navigation */}
 
             <ul className="flex list-none flex-col md:min-w-full md:flex-col">
@@ -106,7 +115,7 @@ export default function Sidebar() {
                           : "text-blueGray-300")
                       }
                     ></i>{" "}
-                    Dashboard
+                    About
                   </a>
                 </Link>
               </li>
@@ -130,7 +139,7 @@ export default function Sidebar() {
                           : "text-blueGray-300")
                       }
                     ></i>{" "}
-                    Settings
+                    Experience
                   </a>
                 </Link>
               </li>
@@ -154,200 +163,14 @@ export default function Sidebar() {
                           : "text-blueGray-300")
                       }
                     ></i>{" "}
-                    Tables
+                    Projects
                   </a>
                 </Link>
               </li>
 
-              <li className="items-center">
-                <Link legacyBehavior href="/admin/maps">
-                  <a
-                    href="#pablo"
-                    className={
-                      "block py-3 text-xs font-bold uppercase " +
-                      (router.pathname.indexOf("/admin/maps") !== -1
-                        ? "text-lightBlue-500 hover:text-lightBlue-600"
-                        : "text-blueGray-700 hover:text-blueGray-500")
-                    }
-                  >
-                    <i
-                      className={
-                        "fas fa-map-marked mr-2 text-sm " +
-                        (router.pathname.indexOf("/admin/maps") !== -1
-                          ? "opacity-75"
-                          : "text-blueGray-300")
-                      }
-                    ></i>{" "}
-                    Maps
-                  </a>
-                </Link>
-              </li>
+              
             </ul>
 
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="text-blueGray-500 block pb-4 pt-1 text-xs font-bold uppercase no-underline md:min-w-full">
-              Auth Layout Pages
-            </h6>
-            {/* Navigation */}
-
-            <ul className="flex list-none flex-col md:mb-4 md:min-w-full md:flex-col">
-              <li className="items-center">
-                <Link legacyBehavior href="/auth/login">
-                  <a
-                    href="#pablo"
-                    className="text-blueGray-700 hover:text-blueGray-500 block py-3 text-xs font-bold uppercase"
-                  >
-                    <i className="fas fa-fingerprint text-blueGray-400 mr-2 text-sm"></i>{" "}
-                    Login
-                  </a>
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link legacyBehavior href="/auth/register">
-                  <a
-                    href="#pablo"
-                    className="text-blueGray-700 hover:text-blueGray-500 block py-3 text-xs font-bold uppercase"
-                  >
-                    <i className="fas fa-clipboard-list text-blueGray-300 mr-2 text-sm"></i>{" "}
-                    Register
-                  </a>
-                </Link>
-              </li>
-            </ul>
-
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="text-blueGray-500 block pb-4 pt-1 text-xs font-bold uppercase no-underline md:min-w-full">
-              No Layout Pages
-            </h6>
-            {/* Navigation */}
-
-            <ul className="flex list-none flex-col md:mb-4 md:min-w-full md:flex-col">
-              <li className="items-center">
-                <Link legacyBehavior href="/landing">
-                  <a
-                    href="#pablo"
-                    className="text-blueGray-700 hover:text-blueGray-500 block py-3 text-xs font-bold uppercase"
-                  >
-                    <i className="fas fa-newspaper text-blueGray-400 mr-2 text-sm"></i>{" "}
-                    Landing Page
-                  </a>
-                </Link>
-              </li>
-
-              <li className="items-center">
-                <Link legacyBehavior href="/profile">
-                  <a
-                    href="#pablo"
-                    className="text-blueGray-700 hover:text-blueGray-500 block py-3 text-xs font-bold uppercase"
-                  >
-                    <i className="fas fa-user-circle text-blueGray-400 mr-2 text-sm"></i>{" "}
-                    Profile Page
-                  </a>
-                </Link>
-              </li>
-            </ul>
-
-            {/* Divider */}
-            <hr className="my-4 md:min-w-full" />
-            {/* Heading */}
-            <h6 className="text-blueGray-500 block pb-4 pt-1 text-xs font-bold uppercase no-underline md:min-w-full">
-              Documentation
-            </h6>
-            {/* Navigation */}
-            <ul className="flex list-none flex-col md:mb-4 md:min-w-full md:flex-col">
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/colors/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 mb-4 block text-sm font-semibold no-underline"
-                >
-                  <i className="fas fa-paint-brush text-blueGray-300 mr-2 text-base"></i>
-                  Styles
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 mb-4 block text-sm font-semibold no-underline"
-                >
-                  <i className="fab fa-css3-alt text-blueGray-300 mr-2 text-base"></i>
-                  CSS Components
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/angular/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 mb-4 block text-sm font-semibold no-underline"
-                >
-                  <i className="fab fa-angular text-blueGray-300 mr-2 text-base"></i>
-                  Angular
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/js/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 mb-4 block text-sm font-semibold no-underline"
-                >
-                  <i className="fab fa-js-square text-blueGray-300 mr-2 text-base"></i>
-                  Javascript
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 mb-4 block text-sm font-semibold no-underline"
-                >
-                  <i className="fab fa-react text-blueGray-300 mr-2 text-base"></i>
-                  NextJS
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 mb-4 block text-sm font-semibold no-underline"
-                >
-                  <i className="fab fa-react text-blueGray-300 mr-2 text-base"></i>
-                  React
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/svelte/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 mb-4 block text-sm font-semibold no-underline"
-                >
-                  <i className="fas fa-link text-blueGray-300 mr-2 text-base"></i>
-                  Svelte
-                </a>
-              </li>
-
-              <li className="inline-flex">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/vue/overview/notus"
-                  target="_blank"
-                  className="text-blueGray-700 hover:text-blueGray-500 mb-4 block text-sm font-semibold no-underline"
-                >
-                  <i className="fab fa-vuejs text-blueGray-300 mr-2 text-base"></i>
-                  VueJS
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </nav>
