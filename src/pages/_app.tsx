@@ -10,7 +10,8 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "~/styles/globals.css";
 import "~/styles/tailwind.css";
 
-export type NextPageWithLayout<P = NonNullable<unknown>, IP = P> = NextPage<P, IP> & {
+// eslint-disable-next-line @typescript-eslint/ban-types
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
 
