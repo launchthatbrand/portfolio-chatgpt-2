@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import React from "react";
 import { useRouter } from "next/router";
 
 // import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
@@ -10,7 +10,7 @@ export default function Sidebar() {
   const router = useRouter();
   return (
     <>
-      <nav className="relative z-10 flex flex-wrap items-center justify-between bg-white px-6 py-4 shadow-xl md:fixed md:bottom-0 md:left-0 md:top-0 md:block md:w-6/12 md:flex-row md:flex-nowrap md:overflow-hidden md:overflow-y-auto">
+      <nav className="basis-3/6 relative z-10 flex flex-wrap items-center justify-between bg-white px-6 py-4 shadow-xl md:fixed md:bottom-0 md:left-0 md:top-0 md:block md:w-6/12 md:flex-row md:flex-nowrap md:overflow-hidden md:overflow-y-auto">
         <div className="mx-auto flex w-full flex-wrap items-center justify-between px-0 md:min-h-full md:flex-col md:flex-nowrap md:items-stretch">
           {/* Toggler */}
           <button
