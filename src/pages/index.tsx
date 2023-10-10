@@ -2,10 +2,11 @@
 
 import EmploymentCard from "~/components/Cards/CardEmployment";
 import Layout from "../layouts/Main";
-import Link from "next/link";
 import type { NextPageWithLayout } from "./_app";
 import ProjectCard from "~/components/Cards/CardProjects";
 import type { ReactElement } from "react";
+
+// import Link from "next/link";
 
 const Page: NextPageWithLayout = () => {
   return (

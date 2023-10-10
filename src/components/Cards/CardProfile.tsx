@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface ProfileCardProps {
@@ -14,9 +15,11 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, loc, desc }) => {
           <div className="flex flex-wrap justify-items-start">
             <div className="flex w-full justify-items-start">
               <div className="relative">
-                <img
-                  alt="..."
+                <Image
                   src="/img/team-2-800x800.jpg"
+                  width={500}
+                  height={500}
+                  alt="Picture of the author"
                   className="max-w-150-px h-auto rounded-lg border-none align-middle shadow-xl"
                 />
               </div>

@@ -1,12 +1,11 @@
 import Layout from "../layouts/Main";
-import Link from "next/link";
 import type { NextPageWithLayout } from "./_app";
 import type { ReactElement } from "react";
 
 const Test: NextPageWithLayout = () => {
   return (
     <>
-     <div className="basis-3/6">TEST CONTENT</div>
+      <div className="basis-3/6">TEST CONTENT</div>
     </>
   );
 };

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 interface ProjectCardProps {
@@ -11,14 +12,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ title, desc, tags }) => {
     <div className="container mx-auto overflow-hidden p-7 lg:hover:bg-slate-800/50 lg:hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:hover:drop-shadow-lg">
       <div className="flex flex-wrap items-start">
         <div className="mr-auto px-4 pt-24 md:w-1/4 md:pt-0">
-          <img
-            alt="..."
+          <Image
+            src="/img/documentation.png"
+            width={500}
+            height={500}
+            alt="Picture of the author"
             className="max-w-full rounded-lg shadow-xl"
             style={{
               transform:
                 "scale(1) perspective(1040px) rotateY(-11deg) rotateX(2deg) rotate(2deg)",
             }}
-            src="/img/documentation.png"
           />
         </div>
         <div className="ml-auto px-12 md:w-3/4 md:px-4">
