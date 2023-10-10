@@ -44,7 +44,7 @@ const EmploymentCard: React.FC<EmploymentCardProps> = ({
               tags.map((tag, index) => (
                 <span
                   key={index}
-                  className="text-blueGray-500 mr-2 mt-2 inline-block rounded-full bg-white px-2 py-1 text-xs font-semibold uppercase uppercase last:mr-0"
+                  className="text-blueGray-500 mr-2 mt-2 inline-block rounded-full bg-white px-2 py-1 text-xs font-semibold uppercase last:mr-0"
                 >
                   {tag}
                 </span>
