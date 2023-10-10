@@ -1,64 +1,83 @@
 import React from "react";
 
-interface ProfileCard {
-  name?: string;
-  loc?: string;
+interface EmploymentCardProps {
+  title?: string;
+  position?: string;
+  start_date?: string;
+  end_date?: string;
   desc?: string;
+  tags?: string[];
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ name, loc, desc }) => {
+const EmploymentCard: React.FC<EmploymentCardProps> = ({
+  title,
+  position,
+  start_date,
+  end_date,
+  desc,
+  tags,
+}) => {
   return (
-    <>
-      <div className="relative mb-6 mt-16 flex w-full min-w-0 flex-col break-words rounded-lg">
-        <div className="px-6">
-          <div className="flex flex-wrap justify-items-start">
-            <div className="flex w-full justify-items-start">
-              <div className="relative">
-                <img
-                  alt="..."
-                  src="/img/team-2-800x800.jpg"
-                  className="max-w-150-px h-auto rounded-lg border-none align-middle shadow-xl"
-                />
-              </div>
-            </div>
-          </div>
-          <div className="mt-12">
-            <h3 className="text-blueGray-700 mb-2 mb-2 text-xl font-semibold leading-normal">
-              {name}
-            </h3>
-            <div className="text-blueGray-400 mb-2 mt-0 text-sm font-bold uppercase leading-normal">
-              <i className="fas fa-map-marker-alt text-blueGray-400 mr-2 text-lg"></i>{" "}
-              {loc}
-            </div>
-          </div>
-          <div className="border-blueGray-200 mt-5 py-5">
-            <div className="flex flex-wrap justify-center">
-              <p className="text-blueGray-700 mb-4 text-lg leading-relaxed">
-                {desc}
-              </p>
-              {/*  <a
-                  href="#pablo"
-                  className="text-lightBlue-500 font-normal"
-                  onClick={(e) => e.preventDefault()}
+    <div className="container mx-auto overflow-hidden p-7 lg:hover:bg-slate-800/50 lg:hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:hover:drop-shadow-lg">
+      <div className="flex flex-wrap items-start">
+        <div className="basis-1/4">
+          {start_date} - {end_date}
+        </div>
+        <div className="ml-auto mr-auto basis-3/4">
+          {/*           <div className="text-blueGray-500 mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white p-3 text-center shadow-lg">
+            <i className="fas fa-sitemap text-xl"></i>
+          </div> */}
+          <h3 className="mb-2 text-3xl font-semibold leading-normal">
+            {title}
+          </h3>
+          <h3 className="mb-2 text-3xl font-semibold leading-normal">
+            {position}
+          </h3>
+          <h3 className="mb-2 text-3xl font-semibold leading-normal">
+            {title}
+          </h3>
+          <p className="text-blueGray-600 mb-4 mt-4 text-lg font-light leading-relaxed">
+            {desc}
+          </p>
+          <div className="block pb-6">
+            {tags && tags.length > 0 ? (
+              tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="text-blueGray-500 mr-2 mt-2 inline-block rounded-full bg-white px-2 py-1 text-xs font-semibold uppercase uppercase last:mr-0"
                 >
-                  Show more
-                </a> */}
-            </div>
+                  {tag}
+                </span>
+              ))
+            ) : (
+              <span>No tags</span>
+            )}
           </div>
+          {/* <a
+            href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus?ref=nnjs-index"
+            target="_blank"
+            className="text-blueGray-700 hover:text-blueGray-500 font-bold transition-all duration-150 ease-linear"
+          >
+            View All{" "}
+            <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
+          </a> */}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
 // Set default prop values using defaultProps
-ProfileCard.defaultProps = {
-  title: "Default Name",
-  loc: "Default Location",
+EmploymentCard.defaultProps = {
+  title: "Default Title",
+  position: "Default Position",
+  start_date: "2000",
+  end_date: "2005",
   desc: "Default Description",
+  tags: ["Tag1", "Tag2", "Tag3"],
 };
 
-export default ProfileCard;
+export default EmploymentCard;
 /* 
 export default function CardProfile() {
   return (

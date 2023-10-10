@@ -10,19 +10,19 @@ import Sidebar from "../components/Sidebar/Sidebar";
 // import FooterAdmin from "components/Footers/FooterAdmin.js";
 
 interface LayoutProps {
-  children?: ReactNode
+  children?: ReactNode;
   // any props that come into the component
 }
 
 export default function Admin({ children }: LayoutProps) {
   return (
-    <><div className="flex w-screen h-screen flex-row">
-      <div className="basis-3/6"></div>
+    <>
+      <div className="bg-blueGray-100 flex h-full w-screen flex-row">
+        <div className=" lg:w-1/2">
+          <Sidebar />
+        </div>
 
-      <Sidebar />
-      <div className="bg-blueGray-100 basis-3/6">
-        {children}
-      </div>
+        <div className="m-4 lg:w-1/2">{children}</div>
       </div>
     </>
   );

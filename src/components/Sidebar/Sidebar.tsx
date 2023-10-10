@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ProfileCard from "../Cards/CardProfile";
 import React from "react";
 import { useRouter } from "next/router";
 
@@ -10,11 +11,11 @@ export default function Sidebar() {
   const router = useRouter();
   return (
     <>
-      <nav className="basis-3/6 relative z-10 flex flex-wrap items-center justify-between bg-white px-6 py-4 shadow-xl md:fixed md:bottom-0 md:left-0 md:top-0 md:block md:w-6/12 md:flex-row md:flex-nowrap md:overflow-hidden md:overflow-y-auto">
+      <nav className="relative z-10 flex flex-wrap items-center justify-between px-16 py-4 md:fixed md:bottom-0 md:left-0 md:top-0 md:block md:w-6/12 md:flex-row md:flex-nowrap md:overflow-hidden md:overflow-y-auto">
         <div className="mx-auto flex w-full flex-wrap items-center justify-between px-0 md:min-h-full md:flex-col md:flex-nowrap md:items-stretch">
           {/* Toggler */}
           <button
-            className="cursor-pointer rounded border border-solid border-transparent bg-transparent px-3 py-1 text-xl leading-none text-black opacity-50 md:hidden"
+            className="cursor-pointer rounded border border-solid border-transparent bg-transparent px-3 py-1 text-xl leading-none text-black md:hidden"
             type="button"
             onClick={() => setCollapseShow("bg-white m-2 py-3 px-6")}
           >
@@ -29,15 +30,12 @@ export default function Sidebar() {
               Desmond Tatilian
             </a>
           </Link> */}
-          <div className="text-blueGray-600 mr-0 inline-block whitespace-nowrap p-4 px-0 text-left text-sm font-bold uppercase md:block md:pb-2">
-            Desmond Tatilian
-            </div>
-            <div className="text-blueGray-600 mr-0 inline-block whitespace-nowrap p-4 px-0 text-left text-sm font-bold uppercase md:block md:pb-2">
-            Creating Digital Products at LaunchThatBrand
-            </div>
-            <div className="text-blueGray-600 mr-0 inline-block whitespace-nowrap p-4 px-0 text-left text-sm font-bold uppercase md:block md:pb-2">
-            I build accessible, inclusive products and digital experiences for the web.
-            </div>
+          <ProfileCard
+            name="Desmond Tatilian"
+            loc="Tallahassee, Florida"
+            desc="I build accessible, inclusive products and digital experiences for the web."
+          />
+
           {/* User */}
           <ul className="flex list-none flex-wrap items-center md:hidden">
             <li className="relative inline-block">
@@ -48,7 +46,7 @@ export default function Sidebar() {
           {/* Collapse */}
           <div
             className={
-              "absolute left-0 right-0 top-0 z-40 h-auto flex-1 items-center overflow-y-auto overflow-x-hidden rounded shadow md:relative md:mt-4 md:flex md:flex-col md:items-stretch md:opacity-100 md:shadow-none " +
+              "absolute left-0 right-0 top-0 z-40 h-auto flex-1 items-center overflow-y-auto overflow-x-hidden rounded px-6 shadow md:relative md:mt-4 md:flex md:flex-col md:items-stretch md:opacity-100 md:shadow-none " +
               collapseShow
             }
           >
@@ -167,10 +165,7 @@ export default function Sidebar() {
                   </a>
                 </Link>
               </li>
-
-              
             </ul>
-
           </div>
         </div>
       </nav>

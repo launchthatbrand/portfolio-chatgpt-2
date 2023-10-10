@@ -1,64 +1,61 @@
 import React from "react";
 
-interface ProfileCard {
-  name?: string;
-  loc?: string;
+interface ProjectCardProps {
+  title?: string;
   desc?: string;
+  tags?: string[];
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ name, loc, desc }) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ title, desc, tags }) => {
   return (
-    <>
-      <div className="relative mb-6 mt-16 flex w-full min-w-0 flex-col break-words rounded-lg">
-        <div className="px-6">
-          <div className="flex flex-wrap justify-items-start">
-            <div className="flex w-full justify-items-start">
-              <div className="relative">
-                <img
-                  alt="..."
-                  src="/img/team-2-800x800.jpg"
-                  className="max-w-150-px h-auto rounded-lg border-none align-middle shadow-xl"
-                />
-              </div>
-            </div>
+    <div className="container mx-auto overflow-hidden p-7 lg:hover:bg-slate-800/50 lg:hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:hover:drop-shadow-lg">
+      <div className="flex flex-wrap items-start">
+        <div className="mr-auto px-4 pt-24 md:w-1/4 md:pt-0">
+          <img
+            alt="..."
+            className="max-w-full rounded-lg shadow-xl"
+            style={{
+              transform:
+                "scale(1) perspective(1040px) rotateY(-11deg) rotateX(2deg) rotate(2deg)",
+            }}
+            src="/img/documentation.png"
+          />
+        </div>
+        <div className="ml-auto px-12 md:w-3/4 md:px-4">
+          <div className="md:pr-12">
+            <h3 className="text-3xl font-semibold">{title}</h3>
+            <p className="text-blueGray-500 mt-4 text-lg leading-relaxed">
+              {desc}
+            </p>
           </div>
-          <div className="mt-12">
-            <h3 className="text-blueGray-700 mb-2 mb-2 text-xl font-semibold leading-normal">
-              {name}
-            </h3>
-            <div className="text-blueGray-400 mb-2 mt-0 text-sm font-bold uppercase leading-normal">
-              <i className="fas fa-map-marker-alt text-blueGray-400 mr-2 text-lg"></i>{" "}
-              {loc}
-            </div>
-          </div>
-          <div className="border-blueGray-200 mt-5 py-5">
-            <div className="flex flex-wrap justify-center">
-              <p className="text-blueGray-700 mb-4 text-lg leading-relaxed">
-                {desc}
-              </p>
-              {/*  <a
-                  href="#pablo"
-                  className="text-lightBlue-500 font-normal"
-                  onClick={(e) => e.preventDefault()}
+          <div className="block pb-6">
+            {tags && tags.length > 0 ? (
+              tags.map((tag, index) => (
+                <span
+                  key={index}
+                  className="text-blueGray-500 mr-2 mt-2 inline-block rounded-full bg-white px-2 py-1 text-xs font-semibold uppercase uppercase last:mr-0"
                 >
-                  Show more
-                </a> */}
-            </div>
+                  {tag}
+                </span>
+              ))
+            ) : (
+              <span>No tags</span>
+            )}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
 // Set default prop values using defaultProps
-ProfileCard.defaultProps = {
-  title: "Default Name",
-  loc: "Default Location",
+ProjectCard.defaultProps = {
+  title: "Default Title",
   desc: "Default Description",
+  tags: ["Tag1", "Tag2", "Tag3"],
 };
 
-export default ProfileCard;
+export default ProjectCard;
 /* 
 export default function CardProfile() {
   return (

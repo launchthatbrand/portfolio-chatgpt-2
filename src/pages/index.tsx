@@ -1,19 +1,20 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import CardProfile from "~/components/Cards/CardProfile";
+import EmploymentCard from "~/components/Cards/CardEmployment";
 import Layout from "../layouts/Main";
 import Link from "next/link";
 import type { NextPageWithLayout } from "./_app";
+import ProjectCard from "~/components/Cards/CardProjects";
 import type { ReactElement } from "react";
 
 const Page: NextPageWithLayout = () => {
   return (
     <>
       {/* <IndexNavbar fixed /> */}
-      <section className="header relative flex h-screen items-center pt-16">
-        <div className="container mx-auto flex flex-wrap items-center">
+      <section className="header relative flex items-center pb-16 pt-16">
+        <div className="container flex flex-wrap items-center">
           <div className="w-full px-4">
-            <div className="pt-32 sm:pt-0">
+            <div className="sm:pt-0">
               {/* <h2 className="text-blueGray-600 text-4xl font-semibold">
                 Notus NextJS - A beautiful extension for Tailwind CSS.
               </h2> */}
@@ -50,25 +51,26 @@ const Page: NextPageWithLayout = () => {
             </div>
           </div>
         </div>
-        <img
+        {/* <img
           className="b-auto max-h-860-px absolute right-0 top-0 -mt-48 w-10/12 pt-16 sm:mt-0 sm:w-6/12"
           src="/img/pattern_nextjs.png"
           alt="..."
-        />
+        /> */}
       </section>
 
-      <section className="bg-blueGray-100 relative mt-48 pb-40 md:mt-40">
-        <CardProfile
-          title="Lead Engineer"
-          position="Lead Engineer"
-          start_date="2018"
-          end_date="2020"
-          desc="this the the job description"
-          tags={["Tag1", "Tag2", "Tag3"]}
-        />
+      <section className="relative pb-40">
+        <EmploymentCard />
+        <EmploymentCard />
+        <EmploymentCard />
       </section>
 
-      <section className="bg-blueGray-100 relative mt-48 pb-40 md:mt-40">
+      <section className="relative pb-40">
+        <ProjectCard />
+        <ProjectCard />
+        <ProjectCard />
+      </section>
+
+      {/* <section className="bg-blueGray-100 relative mt-48 pb-40 md:mt-40">
         <div
           className="absolute bottom-auto left-0 right-0 top-0 -mt-20 h-20 w-full"
           style={{ transform: "translateZ(0)" }}
@@ -514,9 +516,9 @@ const Page: NextPageWithLayout = () => {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="z-1 bg-blueGray-600 relative block">
+      {/* <section className="z-1 bg-blueGray-600 relative block">
         <div className="container mx-auto">
           <div className="flex flex-wrap justify-center">
             <div className="lg:w-12/12 -mt-24 w-full  px-4">
@@ -569,9 +571,9 @@ const Page: NextPageWithLayout = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="bg-blueGray-600 overflow-hidden py-20">
+      {/* <section className="bg-blueGray-600 overflow-hidden py-20">
         <div className="container mx-auto pb-64">
           <div className="flex flex-wrap justify-center">
             <div className="ml-auto mr-auto w-full px-12 md:mt-64 md:w-5/12 md:px-4">
@@ -612,9 +614,9 @@ const Page: NextPageWithLayout = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className="bg-blueGray-200 relative pb-16 pt-32">
+      {/* <section className="bg-blueGray-200 relative pb-16 pt-32">
         <div
           className="absolute bottom-auto left-0 right-0 top-0 -mt-20 h-20 w-full"
           style={{ transform: "translateZ(0)" }}
@@ -672,7 +674,7 @@ const Page: NextPageWithLayout = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <Footer /> */}
     </>
   );
