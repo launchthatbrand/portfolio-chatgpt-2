@@ -1,26 +1,31 @@
-import "@fortawesome/fontawesome-free/css/all.min.css";
-import "~/styles/globals.css";
-import "~/styles/tailwind.css";
+/* eslint-disable @typescript-eslint/no-unsafe-return */
 
-import type { ReactElement, ReactNode } from "react";
+import "tailwindcss/tailwind.css";
 
 import type { AppProps } from "next/app";
-import type { NextPage } from "next";
-import { api } from "~/utils/api";
+import { lazy } from "react";
 
-// eslint-disable-next-line @typescript-eslint/ban-types
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
+export interface SharedPageProps {
+  draftMode: boolean;
+  token: string;
+}
 
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-};
+const PreviewProvider = lazy(() => import("components/PreviewProvider"));
 
-const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
-  const getLayout = Component.getLayout ?? ((page) => page);
-
-  return getLayout(<Component {...pageProps} />);
-};
-
-export default api.withTRPC(MyApp);
+export default function App({
+  Component,
+  pageProps,
+}: AppProps<SharedPageProps>) {
+  const { draftMode, token } = pageProps;
+  return (
+    <>
+      {draftMode ? (
+        <PreviewProvider token={token}>
+          <Component {...pageProps} />
+        </PreviewProvider>
+      ) : (
+        <Component {...pageProps} />
+      )}
+    </>
+  );
+}
