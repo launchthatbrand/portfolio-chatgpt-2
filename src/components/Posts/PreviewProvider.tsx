@@ -1,16 +1,18 @@
-// ./nextjs-pages/src/components/PreviewProvider.tsx
-
-import { LiveQueryProvider } from "@sanity/preview-kit";
-import { getClient } from "@/sanity/lib/getClient";
+import { LiveQueryProvider } from "next-sanity/preview";
+import { getClient } from "@/sanity/lib/sanity.client";
 import { useMemo } from "react";
 
 export default function PreviewProvider({
   children,
-  previewToken,
+  token,
 }: {
   children: React.ReactNode;
-  previewToken: string;
+  token: string;
 }) {
-  const client = useMemo(() => getClient(previewToken), [previewToken]);
-  return <LiveQueryProvider client={client}>{children}</LiveQueryProvider>;
+  const client = useMemo(() => getClient({ token }), [token]);
+  return (
+    <LiveQueryProvider client={client} logger={console}>
+      {children}
+    </LiveQueryProvider>
+  );
 }
