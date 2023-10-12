@@ -36,9 +36,9 @@ import {
   createClient,
   groq,
   type SanityClient,
-  type SanityDocument,
+  SanityDocument,
 } from "next-sanity";
-import { parseBody, type ParsedBody } from "next-sanity/webhook";
+import { parseBody, ParsedBody } from "next-sanity/webhook";
 
 export { config } from "next-sanity/webhook";
 
@@ -84,7 +84,9 @@ type StaleRoute = "/" | `/posts/${string}`;
 
 async function queryStaleRoutes(
   body: Pick<
-    ParsedBody<SanityDocument>["body"],
+    ParsedBody<SanityDocument>["body"] & {
+      _type: "author" | "post" | "settings"; // Update with all valid types
+    },
     "_type" | "_id" | "date" | "slug"
   >,
 ): Promise<StaleRoute[]> {
@@ -100,8 +102,8 @@ async function queryStaleRoutes(
     const exists = await client.fetch(groq`*[_id == $id][0]`, { id: body._id });
     if (!exists) {
       let staleRoutes: StaleRoute[] = ["/"];
-      if ((body.slug as any)?.current) {
-        staleRoutes.push(`/posts/${(body.slug as any).current}`);
+      if (body.slug?.current) {
+        staleRoutes.push(`/posts/${body.slug.current}`);
       }
       // Assume that the post document was deleted. Query the datetime used to sort "More stories" to determine if the post was in the list.
       const moreStories = await client.fetch(
