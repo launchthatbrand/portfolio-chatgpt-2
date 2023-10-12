@@ -1,25 +1,59 @@
+/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /**
- * This configuration is used to for the Sanity Studio that’s mounted on the `\src\pages\studio\[[...index]].tsx` route
+ * This config is used to set up Sanity Studio that's mounted on the `/pages/studio/[[...index]].tsx` route
  */
 
-import {visionTool} from '@sanity/vision'
-import {defineConfig} from 'sanity'
-import {deskTool} from 'sanity/desk'
+import {
+  DRAFT_MODE_ROUTE,
+  apiVersion,
+  dataset,
+  previewSecretId,
+  projectId,
+} from "lib/sanity.api";
+import { settingsPlugin, settingsStructure } from "plugins/settings";
 
-// Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
-import {apiVersion, dataset, projectId} from './sanity/env'
-import {schema} from './sanity/schema'
+import authorType from "schemas/author";
+import { defineConfig } from "sanity";
+import { deskTool } from "sanity/desk";
+import postType from "schemas/post";
+import { previewDocumentNode } from "plugins/previewPane";
+import { previewUrl } from "sanity-plugin-iframe-pane/preview-url";
+import settingsType from "schemas/settings";
+import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
+import { visionTool } from "@sanity/vision";
+
+const title =
+  process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Next.js Blog with Sanity.io";
 
 export default defineConfig({
-  basePath: '/studio',
+  basePath: "/studio",
   projectId,
   dataset,
-  // Add and edit the content schema in the './sanity/schema' folder
-  schema,
+  title,
+  schema: {
+    // If you want more content types, you can add them to this array
+    types: [authorType, postType, settingsType],
+  },
   plugins: [
-    deskTool(),
-    // Vision is a tool that lets you query your content with GROQ in the studio
+    deskTool({
+      structure: settingsStructure(settingsType),
+      // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
+      defaultDocumentNode: previewDocumentNode(),
+    }),
+    // Configures the global "new document" button, and document actions, to suit the Settings document singleton
+    settingsPlugin({ type: settingsType.name }),
+    // Add the "Open preview" action
+    previewUrl({
+      base: DRAFT_MODE_ROUTE,
+      urlSecretId: previewSecretId,
+      matchTypes: [postType.name, settingsType.name],
+    }),
+    // Add an image asset source for Unsplash
+    unsplashImageAsset(),
+    // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
-    visionTool({defaultApiVersion: apiVersion}),
+    visionTool({ defaultApiVersion: apiVersion }),
   ],
-})
+});

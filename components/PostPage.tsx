@@ -34,10 +34,12 @@ export default function PostPage(props: PostPageProps) {
   if (!slug && !preview) {
     notFound();
   }
+  console.log(post);
 
   return (
     <>
       <PostPageHead settings={settings} post={post} />
+      {post.excerpt}
 
       <Layout preview={preview!} loading={loading}>
         <Container>
