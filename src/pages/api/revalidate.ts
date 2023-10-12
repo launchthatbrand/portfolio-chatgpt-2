@@ -36,9 +36,9 @@ import {
   createClient,
   groq,
   type SanityClient,
-  SanityDocument,
+  type SanityDocument,
 } from "next-sanity";
-import { parseBody, ParsedBody } from "next-sanity/webhook";
+import { parseBody, type ParsedBody } from "next-sanity/webhook";
 
 export { config } from "next-sanity/webhook";
 
