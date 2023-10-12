@@ -166,6 +166,56 @@ export default function Sidebar() {
                 </Link>
               </li>
             </ul>
+
+            <ul className="flex list-none flex-col md:min-w-full md:flex-col">
+              <li className="items-center">
+                <Link legacyBehavior href="/posts">
+                  <a
+                    href="#pablo"
+                    className={
+                      "block py-3 text-xs font-bold uppercase " +
+                      (router.pathname.indexOf("/posts") !== -1
+                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fas fa-tv mr-2 text-sm " +
+                        (router.pathname.indexOf("/posts") !== -1
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    ></i>{" "}
+                    Posts
+                  </a>
+                </Link>
+              </li>
+
+              <li className="items-center">
+                <Link legacyBehavior href="/projects">
+                  <a
+                    href="#pablo"
+                    className={
+                      "block py-3 text-xs font-bold uppercase " +
+                      (router.pathname.indexOf("/projects") !== -1
+                        ? "text-lightBlue-500 hover:text-lightBlue-600"
+                        : "text-blueGray-700 hover:text-blueGray-500")
+                    }
+                  >
+                    <i
+                      className={
+                        "fas fa-tools mr-2 text-sm " +
+                        (router.pathname.indexOf("/projects") !== -1
+                          ? "opacity-75"
+                          : "text-blueGray-300")
+                      }
+                    ></i>{" "}
+                    Projects
+                  </a>
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
       </nav>

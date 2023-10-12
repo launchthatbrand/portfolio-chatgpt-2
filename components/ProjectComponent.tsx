@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
 import Avatar from "components/AuthorAvatar";
-import CoverImage from "components/CoverImage";
 import Date from "components/PostDate";
+import Image from "next/image";
 import Link from "next/link";
 import type { Post } from "lib/sanity.queries";
+import ProjectImage from "components/ProjectImage";
 
 export default function PostPreview({
   title,
@@ -36,26 +37,25 @@ export default function PostPreview({
       {author && <Avatar name={author.name} picture={author.picture} />}
     </div>
   ); */
+  console.log({ coverImage });
   return (
     <div className="container mx-auto overflow-hidden p-7 lg:hover:bg-slate-800/50 lg:hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:hover:drop-shadow-lg">
       <div className="flex flex-wrap items-start">
-        <div className="basis-1/4">{/* {start_date} - {end_date} */}</div>
-        <div className="ml-auto mr-auto basis-3/4">
-          {/*           <div className="text-blueGray-500 mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-white p-3 text-center shadow-lg">
-            <i className="fas fa-sitemap text-xl"></i>
-          </div> */}
-          <h3 className="mb-2 text-3xl font-semibold leading-normal">
-            {title}
-          </h3>
-          <h3 className="mb-2 text-3xl font-semibold leading-normal">
-            {/* {position} */}
-          </h3>
-          <h3 className="mb-2 text-3xl font-semibold leading-normal">
-            {/* {title} */}
-          </h3>
-          <p className="text-blueGray-600 mb-4 mt-4 text-lg font-light leading-relaxed">
-            {/* {desc} */}
-          </p>
+        <div className="mr-auto px-4 pt-24 md:w-1/4 md:pt-0">
+          <ProjectImage
+            slug={slug}
+            title={title!}
+            image={coverImage}
+            priority={false}
+          />
+        </div>
+        <div className="ml-auto px-12 md:w-3/4 md:px-4">
+          <div className="md:pr-12">
+            <h3 className="text-3xl font-semibold">{title}</h3>
+            <p className="text-blueGray-500 mt-4 text-lg leading-relaxed">
+              {/* {desc} */}
+            </p>
+          </div>
           {/* <div className="block pb-6">
             {tags && tags.length > 0 ? (
               tags.map((tag, index) => (
@@ -70,14 +70,6 @@ export default function PostPreview({
               <span>No tags</span>
             )}
           </div> */}
-          {/* <a
-            href="https://www.creative-tim.com/learning-lab/tailwind/nextjs/alerts/notus?ref=nnjs-index"
-            target="_blank"
-            className="text-blueGray-700 hover:text-blueGray-500 font-bold transition-all duration-150 ease-linear"
-          >
-            View All{" "}
-            <i className="fa fa-angle-double-right ml-1 leading-relaxed"></i>
-          </a> */}
         </div>
       </div>
     </div>
