@@ -1,11 +1,12 @@
-import { toPlainText } from '@portabletext/react'
-import BlogMeta from 'components/BlogMeta'
-import * as demo from 'lib/demo.data'
-import { Settings } from 'lib/sanity.queries'
-import Head from 'next/head'
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+import { toPlainText } from "@portabletext/react";
+import BlogMeta from "components/BlogMeta";
+import * as demo from "lib/demo.data";
+import { type Settings } from "lib/sanity.queries";
+import Head from "next/head";
 
 export interface IndexPageHeadProps {
-  settings: Settings
+  settings: Settings;
 }
 
 export default function IndexPageHead({ settings }: IndexPageHeadProps) {
@@ -13,8 +14,8 @@ export default function IndexPageHead({ settings }: IndexPageHeadProps) {
     title = demo.title,
     description = demo.description,
     ogImage = {},
-  } = settings
-  const ogImageTitle = ogImage?.title || demo.ogImageTitle
+  } = settings;
+  const ogImageTitle = ogImage?.title ?? demo.ogImageTitle;
 
   return (
     <Head>
@@ -32,9 +33,9 @@ export default function IndexPageHead({ settings }: IndexPageHeadProps) {
         // More info:
         // https://vercel.com/docs/concepts/projects/environment-variables
         content={`${
-          process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : ''
+          process.env.VERCEL_URL ? "https://" + process.env.VERCEL_URL : ""
         }/api/og?${new URLSearchParams({ title: ogImageTitle })}`}
       />
     </Head>
-  )
+  );
 }

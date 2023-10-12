@@ -1,27 +1,30 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { memo, useEffect, useState } from 'react'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 
-import cover from './cover.png'
+import { memo, useEffect, useState } from "react";
+
+import Image from "next/image";
+import Link from "next/link";
+import cover from "./cover.png";
 
 export default memo(function IntroTemplate() {
-  const [studioURL, setStudioURL] = useState(null)
-  const [createPostURL, setCreatePostURL] = useState(null)
-  const [isLocalHost, setIsLocalhost] = useState(false)
+  const [studioURL, setStudioURL] = useState(null);
+  const [createPostURL, setCreatePostURL] = useState(null);
+  const [isLocalHost, setIsLocalhost] = useState(false);
 
-  const hasEnvFile = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+  const hasEnvFile = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
   const hasRepoEnvVars =
     process.env.NEXT_PUBLIC_VERCEL_GIT_PROVIDER &&
     process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_OWNER &&
-    process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_SLUG
-  const repoURL = `https://${process.env.NEXT_PUBLIC_VERCEL_GIT_PROVIDER}.com/${process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_OWNER}/${process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_SLUG}`
+    process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_SLUG;
+  const repoURL = `https://${process.env.NEXT_PUBLIC_VERCEL_GIT_PROVIDER}.com/${process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_OWNER}/${process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_SLUG}`;
   const removeBlockURL = hasRepoEnvVars
     ? `https://${process.env.NEXT_PUBLIC_VERCEL_GIT_PROVIDER}.com/${process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_OWNER}/${process.env.NEXT_PUBLIC_VERCEL_GIT_REPO_SLUG}/blob/main/README.md#how-can-i-remove-the-next-steps-block-from-my-blog`
-    : `https://github.com/sanity-io/nextjs-blog-cms-sanity-v3#how-can-i-remove-the-next-steps-block-from-my-blog`
+    : `https://github.com/sanity-io/nextjs-blog-cms-sanity-v3#how-can-i-remove-the-next-steps-block-from-my-blog`;
 
-  const [hasUTMtags, setHasUTMtags] = useState(false)
+  const [hasUTMtags, setHasUTMtags] = useState(false);
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (typeof window !== 'undefined') {
       setStudioURL(`${window.location.origin}/studio`)
       setCreatePostURL(
@@ -34,7 +37,7 @@ export default memo(function IntroTemplate() {
 
   if (hasUTMtags || !studioURL) {
     return
-  }
+  } */
 
   return (
     <div className="flex justify-center border border-gray-200 bg-gray-50">
@@ -63,7 +66,7 @@ export default memo(function IntroTemplate() {
               <p>
                 <a
                   href={
-                    'https://github.com/sanity-io/nextjs-blog-cms-sanity-v3#step-2-set-up-the-project-locally'
+                    "https://github.com/sanity-io/nextjs-blog-cms-sanity-v3#step-2-set-up-the-project-locally"
                   }
                   className={`mx-1 underline hover:text-blue-800`}
                   target="_blank"
@@ -87,7 +90,7 @@ export default memo(function IntroTemplate() {
                     Your Sanity Studio is deployed at
                     <Link
                       className="mx-1 underline hover:text-blue-800"
-                      href={studioURL}
+                      href={studioURL!}
                     >
                       {studioURL}
                     </Link>
@@ -96,7 +99,7 @@ export default memo(function IntroTemplate() {
                   <div className="mt-3">
                     <Link
                       className="inline-flex rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-800"
-                      href={createPostURL}
+                      href={createPostURL!}
                     >
                       Go to Sanity Studio
                     </Link>
@@ -188,15 +191,15 @@ export default memo(function IntroTemplate() {
         </div>
       </div>
     </div>
-  )
-})
+  );
+});
 
 function Box({
   circleTitle,
   element,
 }: {
-  circleTitle: string
-  element: JSX.Element
+  circleTitle: string;
+  element: JSX.Element;
 }) {
   return (
     <li className="mt-2 grid grid-flow-col grid-rows-1 place-content-start gap-3">
@@ -207,7 +210,7 @@ function Box({
       </div>
       {element}
     </li>
-  )
+  );
 }
 
 function BlueLink({ href, text }: { href: string; text: string }) {
@@ -220,10 +223,10 @@ function BlueLink({ href, text }: { href: string; text: string }) {
     >
       {text}
     </a>
-  )
+  );
 }
 
-const RemoveBlock = ({ url }) => (
+const RemoveBlock = ({ url }: { url: any }) => (
   <a
     className="hover:text-blue-800"
     href={url}
@@ -232,15 +235,15 @@ const RemoveBlock = ({ url }) => (
   >
     How to remove this block?
   </a>
-)
+);
 
 function getGitProvider() {
   switch (process.env.NEXT_PUBLIC_VERCEL_GIT_PROVIDER) {
-    case 'gitlab':
-      return 'GitLab'
-    case 'bitbucket':
-      return 'Bitbucket'
+    case "gitlab":
+      return "GitLab";
+    case "bitbucket":
+      return "Bitbucket";
     default:
-      return 'GitHub'
+      return "GitHub";
   }
 }
