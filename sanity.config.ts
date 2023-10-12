@@ -17,9 +17,11 @@ import { settingsPlugin, settingsStructure } from "plugins/settings";
 import authorType from "schemas/author";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
+import experienceType from "schemas/experience";
 import postType from "schemas/post";
 import { previewDocumentNode } from "plugins/previewPane";
 import { previewUrl } from "sanity-plugin-iframe-pane/preview-url";
+import projectType from "schemas/project";
 import settingsType from "schemas/settings";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import { visionTool } from "@sanity/vision";
@@ -34,7 +36,7 @@ export default defineConfig({
   title,
   schema: {
     // If you want more content types, you can add them to this array
-    types: [authorType, postType, settingsType],
+    types: [experienceType, projectType, authorType, postType, settingsType],
   },
   plugins: [
     deskTool({

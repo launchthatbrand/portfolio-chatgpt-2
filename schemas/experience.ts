@@ -20,8 +20,8 @@ import authorType from "./author";
  */
 
 export default defineType({
-  name: "post",
-  title: "Post",
+  name: "experience",
+  title: "Experience",
   icon: BookIcon,
   type: "document",
   fields: [

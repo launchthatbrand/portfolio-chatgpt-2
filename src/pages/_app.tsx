@@ -19,12 +19,13 @@ import { lazy } from "react";
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
-/* 
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout;
-};
 
-const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+type AppPropsWithLayout = AppProps &
+  SharedPageProps & {
+    Component: NextPageWithLayout;
+  };
+
+/* const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return getLayout(<Component {...pageProps} />);
@@ -39,19 +40,18 @@ export interface SharedPageProps {
 
 const PreviewProvider = lazy(() => import("components/PreviewProvider"));
 
-export default function App({
-  Component,
-  pageProps,
-}: AppProps<SharedPageProps>) {
-  const { draftMode, token } = pageProps;
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const { draftMode, token } = pageProps as SharedPageProps;
+  const getLayout = Component.getLayout ?? ((page) => page);
   return (
     <>
       {draftMode ? (
         <PreviewProvider token={token}>
-          <Component {...pageProps} />
+          getLayout(
+          <Component {...pageProps} />)
         </PreviewProvider>
       ) : (
-        <Component {...pageProps} />
+        getLayout(<Component {...pageProps} />)
       )}
     </>
   );
