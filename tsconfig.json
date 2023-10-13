@@ -20,7 +20,8 @@
     "paths": {
       "~/*": ["./src/*"],
       "components/*": ["./components/*"],
-      "lib/*": ["./sanity/lib/*"]
+      "lib/*": ["./sanity/lib/*"],
+      "@/*": ["./*"]
     }
   },
   "include": [

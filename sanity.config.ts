@@ -25,6 +25,7 @@ import projectType from "schemas/project";
 import settingsType from "schemas/settings";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
 import { visionTool } from "@sanity/vision";
+import { schema } from "@/sanity/schema";
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Next.js Blog with Sanity.io";
@@ -34,10 +35,7 @@ export default defineConfig({
   projectId,
   dataset,
   title,
-  schema: {
-    // If you want more content types, you can add them to this array
-    types: [experienceType, projectType, authorType, postType, settingsType],
-  },
+  schema,
   plugins: [
     deskTool({
       structure: settingsStructure(settingsType),

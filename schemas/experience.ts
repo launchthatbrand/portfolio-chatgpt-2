@@ -71,6 +71,16 @@ export default defineType({
       ],
     }),
     defineField({
+      name: "start_date",
+      title: "Start Date",
+      type: "string",
+    }),
+    defineField({
+      name: "end_date",
+      title: "End Date",
+      type: "string",
+    }),
+    defineField({
       name: "excerpt",
       title: "Excerpt",
       type: "text",
