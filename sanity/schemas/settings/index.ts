@@ -18,9 +18,9 @@ export default defineType({
   // liveEdit: true,
   fields: [
     defineField({
-      name: "title",
-      description: "This field is the title of your blog.",
-      title: "Title",
+      name: "name",
+      description: "This is your name for the portfolio website",
+      title: "Name",
       type: "string",
       initialValue: demo.title,
       validation: (rule) => rule.required(),
@@ -28,7 +28,7 @@ export default defineType({
     defineField({
       name: "description",
       description:
-        "Used both for the <meta> description tag for SEO, and the blog subheader.",
+        "This is a scentence or two describing yourself and it goes under your name on the homepage",
       title: "Description",
       type: "array",
       initialValue: demo.description,
@@ -69,7 +69,7 @@ export default defineType({
     }),
     defineField({
       name: "ogImage",
-      title: "Open Graph Image2",
+      title: "Open Graph Image",
       description:
         "Used for social media previews when linking to the index page.",
       type: "object",

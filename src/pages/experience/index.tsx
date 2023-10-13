@@ -1,14 +1,14 @@
-import { type Post, type Settings } from "lib/sanity.queries";
-import { getAllPosts, getClient, getSettings } from "lib/sanity.client";
+import { type Experience, type Settings } from "lib/sanity.queries";
+import { getAllExperiences, getClient, getSettings } from "lib/sanity.client";
 
 import { type GetStaticProps } from "next";
-import ProjectsPage from "components/ProjectsPage";
-// import PreviewProjectsPage from "components/PreviewProjectsPage";
+import ExperiencesPage from "components/ExperiencesPage";
+import PreviewIndexPage from "components/PreviewIndexPage";
 import type { SharedPageProps } from "~/pages/_app";
 import { readToken } from "lib/sanity.api";
 
 interface PageProps extends SharedPageProps {
-  posts: Post[];
+  posts: Experience[];
   settings: Settings;
 }
 
@@ -17,11 +17,11 @@ type Query = Record<string, string>;
 export default function Page(props: PageProps) {
   const { posts, settings, draftMode } = props;
 
-  /*  if (draftMode) {
-    return <PreviewProjectsPage posts={posts} settings={settings} />;
-  } */
+  if (draftMode) {
+    return <PreviewIndexPage posts={posts} settings={settings} />;
+  }
 
-  return <ProjectsPage posts={posts} settings={settings} />;
+  return <ExperiencesPage posts={posts} settings={settings} />;
 }
 
 export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps<PageProps, Query> = async (ctx) => {
 
   const [settings, posts = []] = await Promise.all([
     getSettings(client),
-    getAllPosts(client),
+    getAllExperiences(client),
   ]);
 
   return {

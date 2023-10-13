@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
+
 import { defineField, defineType } from "sanity";
 
 export default defineType({
@@ -43,21 +44,6 @@ export default defineType({
       ],
     }),
     defineField({
-      name: "category_new",
-      title: "Category",
-      type: "string",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "category_1_content",
-          type: "string",
-          title: "Category 1 Content",
-        },
-      ],
-    }),
-    defineField({
       name: "categories",
       title: "Categories",
       type: "array",
@@ -77,8 +63,8 @@ export default defineType({
       type: "datetime",
     }),
     defineField({
-      name: "body",
-      title: "Body",
+      name: "content",
+      title: "Content",
       type: "blockContent",
     }),
   ],

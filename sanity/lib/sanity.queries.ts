@@ -17,6 +17,18 @@ export const settingsQuery = groq`*[_type == "settings"][0]`;
 
 export const indexQuery = groq`
 *[_type == "post"] | order(date desc, _updatedAt desc) {
+  ${postFields} 
+}`;
+
+export const experiencesQuery = groq`
+*[_type == "experience"] | order(date desc, _updatedAt desc) {
+  start_date,
+  end_date,
+  ${postFields}
+}`;
+
+export const projectsQuery = groq`
+*[_type == "project"] | order(date desc, _updatedAt desc) {
   ${postFields}
 }`;
 
@@ -57,6 +69,15 @@ export interface Post {
   author?: Author;
   slug?: string;
   content?: any;
+}
+
+export interface Experience extends Post {
+  start_date: string;
+  end_date: string;
+}
+
+export interface Project extends Post {
+  tags: string;
 }
 
 export interface Settings {
