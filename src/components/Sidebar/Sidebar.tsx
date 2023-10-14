@@ -1,14 +1,32 @@
+import { getClient, getSettings } from "lib/sanity.client";
+
+import { GetServerSideProps } from 'next';
 import Link from "next/link";
+import PreviewIndexPage from "components/PreviewIndexPage";
 import ProfileCard from "../Cards/CardProfile";
 import React from "react";
+import { Settings } from "lib/sanity.queries";
+import type { SharedPageProps } from "@/src/pages/_app";
+import { readToken } from "lib/sanity.api";
 import { useRouter } from "next/router";
+
+interface PageProps extends SharedPageProps {
+  settings: Settings;
+}
+
+type Query = Record<string, string>;
 
 // import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 // import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
-export default function Sidebar() {
+const Sidebar = (props: PageProps) => {
+  const { settings, draftMode } = props;
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const router = useRouter();
+
+  if (draftMode) {
+    /* return <PreviewIndexPage settings={settings} />; */
+  }
   return (
     <>
       <nav className="relative z-10 flex flex-wrap items-center justify-between px-16 py-4 md:fixed md:bottom-0 md:left-0 md:top-0 md:block md:w-6/12 md:flex-row md:flex-nowrap md:overflow-hidden md:overflow-y-auto">
@@ -221,4 +239,18 @@ export default function Sidebar() {
       </nav>
     </>
   );
+};
+
+export async function getServerSideProps() {
+  // Fetch your profile image data here
+  const profileImage = 'path/to/profile-image.jpg';
+  console.log(profileImage)
+
+  return {
+    props: {
+      profileImage,
+    },
+  };
 }
+
+export default Sidebar;

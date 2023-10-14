@@ -1,13 +1,22 @@
 import Image from "next/image";
+import ProfileImage from "components/ProfileImage";
 import React from "react";
 
 interface ProfileCardProps {
   name?: string;
   loc?: string;
   desc?: string;
+  profileImage?: unknown;
+  title?: string;
 }
 
-const ProfileCard: React.FC<ProfileCardProps> = ({ name, loc, desc }) => {
+const ProfileCard: React.FC<ProfileCardProps> = ({
+  name,
+  loc,
+  desc,
+  profileImage,
+  title,
+}) => {
   return (
     <>
       <div className="relative mb-6 mt-16 flex w-full min-w-0 flex-col break-words rounded-lg">
@@ -21,6 +30,12 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ name, loc, desc }) => {
                   height={500}
                   alt="Picture of the author"
                   className="max-w-150-px h-auto rounded-lg border-none align-middle shadow-xl"
+                />
+                <ProfileImage
+                  /* slug={slug} */
+                  title={title ?? "title"}
+                  image={profileImage}
+                  priority={false}
                 />
               </div>
             </div>
