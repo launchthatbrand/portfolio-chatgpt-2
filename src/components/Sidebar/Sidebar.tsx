@@ -1,14 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+"use client";
+
 import { getClient, getSettings } from "lib/sanity.client";
 
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 import PreviewIndexPage from "components/PreviewIndexPage";
 import ProfileCard from "../Cards/CardProfile";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Settings } from "lib/sanity.queries";
 import type { SharedPageProps } from "@/src/pages/_app";
 import { readToken } from "lib/sanity.api";
-import { useRouter } from "next/router";
+import { useRouter, usePathname } from "next/navigation";
 
 interface PageProps extends SharedPageProps {
   settings: Settings;
@@ -19,14 +22,13 @@ type Query = Record<string, string>;
 // import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 // import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
-const Sidebar = (props: PageProps) => {
-  const { settings, draftMode } = props;
-  const [collapseShow, setCollapseShow] = React.useState("hidden");
-  const router = useRouter();
+const Sidebar = () => {
+  /* const [collapseShow, setCollapseShow] = React.useState("hidden"); */
+  const pathname = usePathname();
+  const client = getClient();
+  const settings = getSettings(client);
+  console.log(settings);
 
-  if (draftMode) {
-    /* return <PreviewIndexPage settings={settings} />; */
-  }
   return (
     <>
       <nav className="relative z-10 flex flex-wrap items-center justify-between px-16 py-4 md:fixed md:bottom-0 md:left-0 md:top-0 md:block md:w-6/12 md:flex-row md:flex-nowrap md:overflow-hidden md:overflow-y-auto">
@@ -35,7 +37,7 @@ const Sidebar = (props: PageProps) => {
           <button
             className="cursor-pointer rounded border border-solid border-transparent bg-transparent px-3 py-1 text-xl leading-none text-black md:hidden"
             type="button"
-            onClick={() => setCollapseShow("bg-white m-2 py-3 px-6")}
+            /* onClick={() => setCollapseShow("bg-white m-2 py-3 px-6")} */
           >
             <i className="fas fa-bars"></i>
           </button>
@@ -49,7 +51,7 @@ const Sidebar = (props: PageProps) => {
             </a>
           </Link> */}
           <ProfileCard
-            name="Desmond Tatilian"
+            name="Des"
             loc="Tallahassee, Florida"
             desc="I build accessible, inclusive products and digital experiences for the web."
           />
@@ -64,8 +66,8 @@ const Sidebar = (props: PageProps) => {
           {/* Collapse */}
           <div
             className={
-              "absolute left-0 right-0 top-0 z-40 h-auto flex-1 items-center overflow-y-auto overflow-x-hidden rounded px-6 shadow md:relative md:mt-4 md:flex md:flex-col md:items-stretch md:opacity-100 md:shadow-none " +
-              collapseShow
+              "absolute left-0 right-0 top-0 z-40 h-auto flex-1 items-center overflow-y-auto overflow-x-hidden rounded px-6 shadow md:relative md:mt-4 md:flex md:flex-col md:items-stretch md:opacity-100 md:shadow-none " /*  +
+              collapseShow */
             }
           >
             {/* Collapse header */}
@@ -85,7 +87,7 @@ const Sidebar = (props: PageProps) => {
                   <button
                     type="button"
                     className="cursor-pointer rounded border border-solid border-transparent bg-transparent px-3 py-1 text-xl leading-none text-black opacity-50 md:hidden"
-                    onClick={() => setCollapseShow("hidden")}
+                    /* onClick={() => setCollapseShow("hidden")} */
                   >
                     <i className="fas fa-times"></i>
                   </button>
@@ -118,7 +120,7 @@ const Sidebar = (props: PageProps) => {
                     href="#pablo"
                     className={
                       "block py-3 text-xs font-bold uppercase " +
-                      (router.pathname.indexOf("/admin/dashboard") !== -1
+                      (pathname.indexOf("/admin/dashboard") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
@@ -126,7 +128,7 @@ const Sidebar = (props: PageProps) => {
                     <i
                       className={
                         "fas fa-tv mr-2 text-sm " +
-                        (router.pathname.indexOf("/admin/dashboard") !== -1
+                        (pathname.indexOf("/admin/dashboard") !== -1
                           ? "opacity-75"
                           : "text-blueGray-300")
                       }
@@ -142,7 +144,7 @@ const Sidebar = (props: PageProps) => {
                     href="#pablo"
                     className={
                       "block py-3 text-xs font-bold uppercase " +
-                      (router.pathname.indexOf("/admin/settings") !== -1
+                      (pathname.indexOf("/admin/settings") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
@@ -150,7 +152,7 @@ const Sidebar = (props: PageProps) => {
                     <i
                       className={
                         "fas fa-tools mr-2 text-sm " +
-                        (router.pathname.indexOf("/admin/settings") !== -1
+                        (pathname.indexOf("/admin/settings") !== -1
                           ? "opacity-75"
                           : "text-blueGray-300")
                       }
@@ -166,7 +168,7 @@ const Sidebar = (props: PageProps) => {
                     href="#pablo"
                     className={
                       "block py-3 text-xs font-bold uppercase " +
-                      (router.pathname.indexOf("/admin/tables") !== -1
+                      (pathname.indexOf("/admin/tables") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
@@ -174,7 +176,7 @@ const Sidebar = (props: PageProps) => {
                     <i
                       className={
                         "fas fa-table mr-2 text-sm " +
-                        (router.pathname.indexOf("/admin/tables") !== -1
+                        (pathname.indexOf("/admin/tables") !== -1
                           ? "opacity-75"
                           : "text-blueGray-300")
                       }
@@ -192,7 +194,7 @@ const Sidebar = (props: PageProps) => {
                     href="#pablo"
                     className={
                       "block py-3 text-xs font-bold uppercase " +
-                      (router.pathname.indexOf("/posts") !== -1
+                      (pathname.indexOf("/posts") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
@@ -200,7 +202,7 @@ const Sidebar = (props: PageProps) => {
                     <i
                       className={
                         "fas fa-tv mr-2 text-sm " +
-                        (router.pathname.indexOf("/posts") !== -1
+                        (pathname.indexOf("/posts") !== -1
                           ? "opacity-75"
                           : "text-blueGray-300")
                       }
@@ -216,7 +218,7 @@ const Sidebar = (props: PageProps) => {
                     href="#pablo"
                     className={
                       "block py-3 text-xs font-bold uppercase " +
-                      (router.pathname.indexOf("/projects") !== -1
+                      (pathname.indexOf("/projects") !== -1
                         ? "text-lightBlue-500 hover:text-lightBlue-600"
                         : "text-blueGray-700 hover:text-blueGray-500")
                     }
@@ -224,7 +226,7 @@ const Sidebar = (props: PageProps) => {
                     <i
                       className={
                         "fas fa-tools mr-2 text-sm " +
-                        (router.pathname.indexOf("/projects") !== -1
+                        (pathname.indexOf("/projects") !== -1
                           ? "opacity-75"
                           : "text-blueGray-300")
                       }
@@ -240,17 +242,5 @@ const Sidebar = (props: PageProps) => {
     </>
   );
 };
-
-export async function getServerSideProps() {
-  // Fetch your profile image data here
-  const profileImage = 'path/to/profile-image.jpg';
-  console.log(profileImage)
-
-  return {
-    props: {
-      profileImage,
-    },
-  };
-}
 
 export default Sidebar;
