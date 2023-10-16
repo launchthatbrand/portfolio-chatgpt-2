@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import React, { useEffect, useState } from "react";
-import { getClient, getSettings } from "lib/sanity.client";
+import { getHomePage } from "lib/sanity.fetch";
 
 import { GetServerSideProps } from "next";
 import Link from "next/link";
@@ -23,11 +23,10 @@ type Query = Record<string, string>;
 // import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
 // import UserDropdown from "components/Dropdowns/UserDropdown.js";
 
-async function Sidebar() {
+export async function Sidebar() {
   /* const [collapseShow, setCollapseShow] = React.useState("hidden"); */
-  const client = getClient();
-  const [settings]: [Settings] = await Promise.all([getSettings(client)]);
-  console.log(settings);
+  const data = await getHomePage();
+  console.log(data);
 
   return (
     <nav className="relative z-10 flex flex-wrap items-center justify-between px-16 py-4 md:fixed md:bottom-0 md:left-0 md:top-0 md:block md:w-6/12 md:flex-row md:flex-nowrap md:overflow-hidden md:overflow-y-auto">
@@ -50,9 +49,9 @@ async function Sidebar() {
             </a>
           </Link> */}
         <ProfileCard
-          name={settings.name}
+          name={data.title}
           loc="Tallahassee, Florida"
-          description={settings.description}
+          description={data.overview}
         />
         {/* User */}
         <ul className="flex list-none flex-wrap items-center md:hidden">
@@ -239,5 +238,3 @@ async function Sidebar() {
     </nav>
   );
 }
-
-export default Sidebar;

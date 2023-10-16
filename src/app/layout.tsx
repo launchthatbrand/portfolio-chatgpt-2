@@ -1,39 +1,38 @@
-/* eslint-disable @typescript-eslint/ban-types */
+/* eslint-disable @typescript-eslint/require-await */
 
-import "tailwindcss/tailwind.css";
+import "~/styles/globals.css";
+import "~/styles/tailwind.css";
 
-import { ReactElement, ReactNode } from "react";
+import { IBM_Plex_Mono, Inter, PT_Serif } from "next/font/google";
 
-import type { AppProps } from "next/app";
-import { Inter } from "next/font/google";
-import { NextPage } from "next";
-import Sidebar from "~/components/Sidebar/Sidebar";
+const serif = PT_Serif({
+  variable: "--font-serif",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+const sans = Inter({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  // @todo: understand why extrabold (800) isn't being respected when explicitly specified in this weight array
+  // weight: ['500', '700', '800'],
+});
+const mono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["500", "700"],
+});
 
-const inter = Inter({ subsets: ["latin"] });
-
-export interface SharedPageProps {
-  draftMode: boolean;
-  token: string;
-}
-
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
-
-type AppPropsWithLayout = AppProps &
-  SharedPageProps & {
-    Component: NextPageWithLayout;
-  };
-
-export default function RootLayout({
-  // Layouts must accept a children prop.
-  // This will be populated with nested layouts or pages
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${mono.variable} ${sans.variable} ${serif.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

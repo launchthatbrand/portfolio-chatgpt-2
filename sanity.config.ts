@@ -1,54 +1,108 @@
-/* eslint-disable @typescript-eslint/prefer-nullish-coalescing */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 /**
  * This config is used to set up Sanity Studio that's mounted on the `/pages/studio/[[...index]].tsx` route
  */
 
+import { visionTool } from "@sanity/vision";
 import {
-  DRAFT_MODE_ROUTE,
   apiVersion,
   dataset,
   previewSecretId,
   projectId,
 } from "lib/sanity.api";
-import { settingsPlugin, settingsStructure } from "plugins/settings";
-
-import authorType from "schemas/author";
+import { pageStructure, singletonPlugin } from "plugins/settings";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
-import experienceType from "schemas/experience";
-import postType from "schemas/post";
-import { previewDocumentNode } from "plugins/previewPane";
-import { previewUrl } from "sanity-plugin-iframe-pane/preview-url";
-import projectType from "schemas/project";
-import settingsType from "schemas/settings";
 import { unsplashImageAsset } from "sanity-plugin-asset-source-unsplash";
-import { visionTool } from "@sanity/vision";
-import { schema } from "@/sanity/schema";
+import Iframe, {
+  defineUrlResolver,
+  IframeOptions,
+} from "sanity-plugin-iframe-pane";
+import { previewUrl } from "sanity-plugin-iframe-pane/preview-url";
+import page from "schemas/documents/page";
+import project from "schemas/documents/project";
+import duration from "schemas/objects/duration";
+import milestone from "schemas/objects/milestone";
+import timeline from "schemas/objects/timeline";
+import home from "schemas/singletons/home";
+import settings from "schemas/singletons/settings";
 
 const title =
-  process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Next.js Blog with Sanity.io";
+  process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE ||
+  "Next.js Personal Website with Sanity.io";
+
+export const PREVIEWABLE_DOCUMENT_TYPES = [
+  home.name,
+  page.name,
+  project.name,
+] satisfies string[];
+
+export const PREVIEWABLE_DOCUMENT_TYPES_REQUIRING_SLUGS = [
+  page.name,
+  project.name,
+] satisfies typeof PREVIEWABLE_DOCUMENT_TYPES;
+
+// Used to generate URLs for drafts and live previews
+export const PREVIEW_BASE_URL = "/api/draft";
+
+export const urlResolver = defineUrlResolver({
+  base: PREVIEW_BASE_URL,
+  requiresSlug: PREVIEWABLE_DOCUMENT_TYPES_REQUIRING_SLUGS,
+});
+
+export const iframeOptions = {
+  url: urlResolver,
+  urlSecretId: previewSecretId,
+} satisfies IframeOptions;
 
 export default defineConfig({
   basePath: "/studio",
-  projectId,
-  dataset,
+  projectId: projectId || "",
+  dataset: dataset || "",
   title,
-  schema,
+  schema: {
+    // If you want more content types, you can add them to this array
+    types: [
+      // Singletons
+      home,
+      settings,
+      // Documents
+      duration,
+      page,
+      project,
+      // Objects
+      milestone,
+      timeline,
+    ],
+  },
   plugins: [
     deskTool({
-      structure: settingsStructure(settingsType),
+      structure: pageStructure([home, settings]),
       // `defaultDocumentNode` is responsible for adding a “Preview” tab to the document pane
-      defaultDocumentNode: previewDocumentNode(),
+      // You can add any React component to `S.view.component` and it will be rendered in the pane
+      // and have access to content in the form in real-time.
+      // It's part of the Studio's “Structure Builder API” and is documented here:
+      // https://www.sanity.io/docs/structure-builder-reference
+      defaultDocumentNode: (S, { schemaType }) => {
+        if ((PREVIEWABLE_DOCUMENT_TYPES as string[]).includes(schemaType)) {
+          return S.document().views([
+            // Default form view
+            S.view.form(),
+            // Preview
+            S.view.component(Iframe).options(iframeOptions).title("Preview"),
+          ]);
+        }
+
+        return null;
+      },
     }),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
-    settingsPlugin({ type: settingsType.name }),
+    singletonPlugin([home.name, settings.name]),
     // Add the "Open preview" action
     previewUrl({
-      base: DRAFT_MODE_ROUTE,
+      base: PREVIEW_BASE_URL,
+      requiresSlug: PREVIEWABLE_DOCUMENT_TYPES_REQUIRING_SLUGS,
       urlSecretId: previewSecretId,
-      matchTypes: [postType.name, settingsType.name],
+      matchTypes: PREVIEWABLE_DOCUMENT_TYPES,
     }),
     // Add an image asset source for Unsplash
     unsplashImageAsset(),
