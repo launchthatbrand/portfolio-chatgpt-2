@@ -30,17 +30,17 @@
  * 16. Redeploy with `npx vercel --prod` to apply the new environment variable
  */
 
-/* import { revalidateSecret } from 'lib/sanity.api' */
+import { revalidateSecret } from "lib/sanity.api";
 import { revalidateTag } from "next/cache";
 import { type NextRequest, NextResponse } from "next/server";
 import { parseBody } from "next-sanity/webhook";
 
-export async function POST(req: NextRequest) {
+export async function GET(req: NextRequest) {
   try {
     const { body, isValidSignature } = await parseBody<{
       _type: string;
       slug?: string | undefined;
-    }>(req, process.env.SANITY_REVALIDATE_SECRET);
+    }>(req, revalidateSecret);
     if (!isValidSignature) {
       const message = "Invalid signature";
       return new Response(message, { status: 401 });
