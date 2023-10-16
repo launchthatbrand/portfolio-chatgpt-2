@@ -1,8 +1,8 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import EmploymentCard from "~/components/Cards/CardEmployment";
-import Layout from "../layouts/Main";
-import type { NextPageWithLayout } from "./_app";
+import Layout from "~/layouts/Main";
+import type { NextPageWithLayout } from "~/app/layout";
 import ProjectCard from "~/components/Cards/CardProjects";
 import type { ReactElement } from "react";
 

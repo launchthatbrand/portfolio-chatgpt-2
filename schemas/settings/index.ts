@@ -22,7 +22,7 @@ export default defineType({
       description: "This field is the title of your blog.",
       title: "Title",
       type: "string",
-      initialValue: demo.title,
+      initialValue: demo.name,
       validation: (rule) => rule.required(),
     }),
     defineField({

@@ -11,7 +11,7 @@ import {
 import type { GetStaticProps } from "next";
 import PostPage from "components/PostPage";
 import PreviewPostPage from "components/PreviewPostPage";
-import type { SharedPageProps } from "~/pages/_app";
+import type { SharedPageProps } from "~/app/layout";
 import { readToken } from "lib/sanity.api";
 
 interface PageProps extends SharedPageProps {

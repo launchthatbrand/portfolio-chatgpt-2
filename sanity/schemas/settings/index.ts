@@ -22,42 +22,14 @@ export default defineType({
       description: "This is your name for the portfolio website",
       title: "Name",
       type: "string",
-      initialValue: demo.title,
+      initialValue: demo.name,
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: "description",
-      description:
-        "This is a scentence or two describing yourself and it goes under your name on the homepage",
       title: "Description",
-      type: "array",
+      type: "blockContent",
       initialValue: demo.description,
-      of: [
-        defineArrayMember({
-          type: "block",
-          options: {},
-          styles: [],
-          lists: [],
-          marks: {
-            decorators: [],
-            annotations: [
-              defineField({
-                type: "object",
-                name: "link",
-                fields: [
-                  {
-                    type: "string",
-                    name: "href",
-                    title: "URL",
-                    validation: (rule) => rule.required(),
-                  },
-                ],
-              }),
-            ],
-          },
-        }),
-      ],
-      validation: (rule) => rule.max(155).required(),
     }),
     defineField({
       name: "profileImage",

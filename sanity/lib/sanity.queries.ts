@@ -81,7 +81,7 @@ export interface Project extends Post {
 }
 
 export interface Settings {
-  title?: string;
+  name?: string;
   description?: any[];
   ogImage?: {
     title?: string;

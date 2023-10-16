@@ -5,7 +5,7 @@ import { getAllProjects, getClient, getSettings } from "lib/sanity.client";
 import { type GetStaticProps } from "next";
 import ProjectsPage from "components/ProjectsPage";
 // import PreviewProjectsPage from "components/PreviewProjectsPage";
-import type { SharedPageProps } from "~/pages/_app";
+import type { SharedPageProps } from "~/app/layout";
 import { readToken } from "lib/sanity.api";
 
 interface PageProps extends SharedPageProps {

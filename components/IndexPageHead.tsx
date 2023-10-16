@@ -11,7 +11,7 @@ export interface IndexPageHeadProps {
 
 export default function IndexPageHead({ settings }: IndexPageHeadProps) {
   const {
-    title = demo.title,
+    name = demo.name,
     description = demo.description,
     ogImage = {},
   } = settings;
@@ -19,7 +19,7 @@ export default function IndexPageHead({ settings }: IndexPageHeadProps) {
 
   return (
     <Head>
-      <title>{title}</title>
+      <title>{name}</title>
       <BlogMeta />
       <meta
         key="description"

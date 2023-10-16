@@ -4,7 +4,7 @@ import { getAllPosts, getClient, getSettings } from "lib/sanity.client";
 import { type GetStaticProps } from "next";
 import IndexPage from "components/IndexPage";
 import PreviewIndexPage from "components/PreviewIndexPage";
-import type { SharedPageProps } from "~/pages/_app";
+import type { SharedPageProps } from "~/app/layout";
 import { readToken } from "lib/sanity.api";
 
 interface PageProps extends SharedPageProps {

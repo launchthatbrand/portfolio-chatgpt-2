@@ -1,12 +1,6 @@
-/* eslint-disable @typescript-eslint/ban-types */
-
 import "tailwindcss/tailwind.css";
 
-import { ReactElement, ReactNode } from "react";
-
-import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
-import { NextPage } from "next";
 import Sidebar from "~/components/Sidebar/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -15,15 +9,6 @@ export interface SharedPageProps {
   draftMode: boolean;
   token: string;
 }
-
-export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode;
-};
-
-type AppPropsWithLayout = AppProps &
-  SharedPageProps & {
-    Component: NextPageWithLayout;
-  };
 
 export default function RootLayout({
   // Layouts must accept a children prop.
@@ -34,7 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <div className="bg-blueGray-100 flex h-full w-screen flex-row">
+        <div className=" lg:w-1/2">
+          <Sidebar />
+        </div>
+
+        <div className="m-4 lg:w-1/2">{children}</div>
+      </div>
     </html>
   );
 }

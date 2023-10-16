@@ -1,11 +1,29 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Image from "next/image";
 import ProfileImage from "components/ProfileImage";
 import React from "react";
 
+import {
+  PortableText,
+  type PortableTextReactComponents,
+} from "@portabletext/react";
+
+import styles from "@/components/PostBody.module.css";
+import { SanityImage } from "@/components/SanityImage";
+import ProfileCardBody from "components/ProfileCardBody";
+
+const myPortableTextComponents: Partial<PortableTextReactComponents> = {
+  types: {
+    image: ({ value }) => {
+      return <SanityImage {...value} />;
+    },
+  },
+};
+
 interface ProfileCardProps {
   name?: string;
   loc?: string;
-  desc?: string;
+  description?: unknown;
   profileImage?: unknown;
   title?: string;
 }
@@ -13,7 +31,7 @@ interface ProfileCardProps {
 const ProfileCard: React.FC<ProfileCardProps> = ({
   name,
   loc,
-  desc,
+  description,
   profileImage,
   title,
 }) => {
@@ -51,9 +69,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
           </div>
           <div className="border-blueGray-200 mt-5 py-5">
             <div className="flex flex-wrap justify-center">
-              <p className="text-blueGray-700 mb-4 text-lg leading-relaxed">
-                {desc}
-              </p>
+              <ProfileCardBody content={description} />
               {/*  <a
                   href="#pablo"
                   className="text-lightBlue-500 font-normal"
@@ -73,7 +89,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
 ProfileCard.defaultProps = {
   name: "Default Name",
   loc: "Default Location",
-  desc: "Default Description",
+  description: "Default Description",
 };
 
 export default ProfileCard;
